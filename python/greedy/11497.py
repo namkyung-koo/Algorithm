@@ -1,5 +1,4 @@
 # 통나무 건너뛰기
-
 from collections import deque
 
 t = int(input())
