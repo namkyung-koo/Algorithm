@@ -15,6 +15,5 @@ for i in range(N - 1):
     res += P * km[i]
 
 print(res)
-
 # 5 2 4 1
-#  2 3 1R
+#  2 3 1
