@@ -1,5 +1,4 @@
 # ATM
-
 N = int(input())
 
 P = sorted(list(map(int, input().split())))
