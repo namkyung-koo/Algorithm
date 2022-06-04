@@ -5,7 +5,7 @@ input = sys.stdin.readline
 
 n, m = map(int, input().split())
 
-graph = [ list(map(int, input().split())) for _ in range(n) ]
+graph = [list(map(int, input().split())) for _ in range(n) ]
 
 visited = [[False] * m for _ in range(n)]
 

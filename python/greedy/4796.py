@@ -14,5 +14,5 @@ while 1:
     else:
         res += L
 
-    print('Case ', i, ': ', res, '\n', sep='')
+    print('Case ', i, ': ', res, sep='')
     i += 1
