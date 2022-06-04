@@ -8,7 +8,6 @@ N, M, V = map(int, input().split())
 graph = [[] for _ in range(N + 1)]
 
 # 간선 연결
-
 for _ in range(M):
     A, B = map(int, input().split())
     graph[A].append(B)
@@ -20,7 +19,6 @@ for i in range(len(graph)):
 
 # 방문 여부를 체크하기 위한 리스트 (1차원 리스트), 모두 False로 초기화
 visited = [False] * (N + 1)
-res = ''
 
 def dfs(graph, v, visited):
     # 현재 노드를 방문 처리
