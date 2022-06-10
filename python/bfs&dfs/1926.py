@@ -1,3 +1,4 @@
+# 그림
 from collections import deque
 import sys
 
@@ -5,7 +6,7 @@ input = sys.stdin.readline
 
 n, m = map(int, input().split())
 
-graph = [list(map(int, input().split())) for _ in range(n) ]
+graph = [list(map(int, input().split())) for _ in range(n)]
 
 visited = [[False] * m for _ in range(n)]
 
@@ -36,19 +37,13 @@ def bfs(y, x):
                     
     return cnt
 
-
-
-res = []
 for j in range(n):
-
     for i in range(m):
         # 그래프가 1 축 그림이면, visited == false 즉 방문한 적이 없으면.
         if graph[j][i] == 1 and visited[j][i] == False:
             visited[j][i] == True
-            #
             cnt += 1
             maxv = max(maxv, bfs(j, i))
-
 
 print(cnt)
 print(maxv)

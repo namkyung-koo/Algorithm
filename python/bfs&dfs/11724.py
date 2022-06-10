@@ -15,7 +15,7 @@ for _ in range(M):
     graph[b].append(a)
 
 visited = [False] * (N + 1)
-
+print(graph)
 cnt = 1
 
 def dfs(v):
