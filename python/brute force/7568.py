@@ -7,7 +7,6 @@ i = 0
 
 while i < N:
     rank = 1
-    j = 0
     for j in range(N):
         if L[i][0] < L[j][0] and L[i][1] < L[j][1]:
             rank += 1
