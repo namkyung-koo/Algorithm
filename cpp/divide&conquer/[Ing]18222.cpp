@@ -1,9 +1,16 @@
 // 투에-모스 문자열
 #include <iostream>
+#include <math.h>
 
 int main(void)
 {
+	long long k;
 
+	std::cin >> k;
+
+	std::cout << k << std::endl;
+
+	return 0;
 }
 
 // 0 => 1
