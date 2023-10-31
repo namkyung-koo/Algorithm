@@ -13,9 +13,9 @@ int dp(int floor, int unit, std::vector<std::vector<int> > &memo)
 	if (memo[floor][unit] != -1)
 		return memo[floor][unit];
 
-	// 재귀 조건
-	memo[floor][unit] = dp(floor, unit, memo) + dp(floor, unit - 1, memo);
-
+	// 재귀 조건( 점화식 ?)
+	memo[floor][unit] = dp(floor - 1, unit - 1, memo) + dp(floor - 1, unit, memo);
+	
 	return memo[floor][unit];
 }
 
@@ -46,7 +46,7 @@ int main()
 	int result = 0;
 
 	for (i = 0; i < T; i++)
-		result = dp(v[i].first - 1, v[i].second, matrix);
+		result = dp(v[i].first, v[i].second, matrix);
 
 	std::cout << result << std::endl;
 
