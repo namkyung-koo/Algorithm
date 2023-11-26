@@ -2,71 +2,60 @@
 #include <iostream>
 #include <functional> // std::greater를 위해 필요
 #include <algorithm>
-#include <utility> // std::pair를 위해 필요
 #include <vector>
 
-void dfs(int r, std::vector<std::pair<int, int> > &vec, std::vector<int> &visited)
+void dfs(std::vector<std::vector<int>> &vec, std::vector<int> &visited, int &order, int r)
 {
-	visited[r] = true;
+	visited[r] = order;
+	order++;
 
-	std::vector<int> found;
-
-	for (const auto &value : vec) {
-		if (value.first == r)
-			found.push_back(value.second);
-		else if (value.second == r)
-			found.push_back(value.first);
+	for (int next_node : vec[r])
+	{
+		if (!visited[next_node])
+			dfs(vec, visited, order, next_node);
 	}
-
-	if (!found.size())
-		return ;
-	
-	std::sort(found.begin(), found.end(), std::greater<int>());
-
-	unsigned int j;
-
-	for (j = 0; j < found.size() && visited[found[j]] == false; j++)
-		dfs(found[j], vec, visited);
 }
 
 int main(void)
 {
+	std::ios_base::sync_with_stdio(false); // 입출력 속도 향상
+	std::cin.tie(NULL);
+
 	// N개의 정점(1 ~ N), M개의 간선으로 구성된 무방향 그래프, 시작 정점 R
 	int n, m, r;
 
 	std::cin >> n >> m >> r;
 
-	std::vector<int> visited(n + 1); // 방문 여부 표시
-	std::vector<std::pair<int, int> >vec(m); // 간선 정보를 담기 위한 vector
+	std::vector<std::vector<int>> vec(n + 1);
 
-	int i, u, v;
+	int i;
 
+	// 정점 u와 정점 v 간의 간선 정보를 저장
 	for (i = 0; i < m; i++)
 	{
+		int u, v;
 		std::cin >> u >> v;
-		vec.push_back(std::make_pair(u, v));
+		vec[u].push_back(v);
+		vec[v].push_back(u);
 	}
 
-	dfs(r, order, vec, visited);
+	// 각 정점의 인접 정점을 내림차순으로 정렬
+	for (auto &row : vec)
+		std::sort(row.begin(), row.end(), std::greater<int>());
 
-	// 출력 부분
+	std::vector<int> visited(n + 1, 0);
+	int order = 1;
+
+	dfs(vec, visited, order, r);
+
+	// // 노드의 방문 순서를 출력
 	for (i = 1; i < n + 1; i++)
-	{
-		if (visited[i] == false)
-			std::cout << 0 << std::endl;
-		else
-			std::cout << order[i] << std::endl;
-	}
+		std::cout << (visited[i] ? visited[i] : 0) << '\n';
 
 	return 0;
 }
 
 /*
-      1
-	 / \ 
-    4 - 2
-	 \ /
-	  3   5
 
 입력 :
 5 1 1
@@ -77,4 +66,5 @@ int main(void)
 0
 2
 0
+
 */
