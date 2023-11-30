@@ -1,4 +1,4 @@
-// 1012번 유기농 배추
+// 1012번 - 유기농 배추
 #include <iostream>
 
 #define CABBAGE 1
