@@ -1,23 +1,32 @@
 // 18352번 - 특정 거리의 도시 찾기
 #include <iostream>
 #include <vector>
+#include <queue>
 
-void bfs(std::vector<std::vector<int>> &info, int start, std::vector<std::vector<int>> &dist)
+int n, m, k, x; // 도시의 개수, 도로의 개수, 거리 정보, 출발 도시의 번호
+
+void bfs(std::vector<std::vector<int>> &graph, int now, std::vector<std::vector<int>> &dist)
 {
-    std::vector<int>::iterator it = info[start].begin();
+    for (int i = 0; i < graph[now].size(); i++)
+    {
+        int next = graph[now][i];
 
-    dist[start][*it] += 1;
+        dist[now][next]++;
 
-    
+        std::cout << "now : " << now << ", next : " << next << ", dist : " << dist[now][next] << std::endl;
+
+        if (n < dist[now][next])
+            dist[now][next] = n + 1;
+
+        bfs(graph, next, dist);
+    }
 }
 
 int main(void)
 {
-    int n, m, k, x; // 도시의 개수, 도로의 개수, 거리 정보, 출발 도시의 번호
-
     std::cin >> n >> m >> k >> x;
 
-    std::vector<std::vector<int>> info(n + 1);
+    std::vector<std::vector<int>> graph(n + 1);
 
     int i, a, b;
 
@@ -25,14 +34,29 @@ int main(void)
     {
         std::cin >> a >> b;
 
-        info[a][b] = 1;
+        graph[a].push_back(b);
     }
 
-    std::vector<std::vector<int>> dist(n + 1);
+    std::vector<std::vector<int>> dist(n + 1, std::vector<int>(n + 1, 0));
 
-    bfs(info, x, dist);
+    bfs(graph, x, dist);
 
+    std::queue<int> queue;
 
+    for (i = 1; i < dist[x].size(); i++)
+        if (dist[x][i] == k)
+            queue.push(i);
+
+    if (queue.empty())
+        std::cout << -1 << std::endl;
+    else
+    {
+        while (!queue.empty())
+        {
+            std::cout << queue.front() << std::endl;
+            queue.pop();
+        }
+    }
 
     return 0;
 }
