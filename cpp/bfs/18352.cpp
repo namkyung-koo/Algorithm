@@ -86,7 +86,7 @@ int main(void)
     initInf();
 
     // 다익스트라 알고리즘을 수행
-    dijstra(x);
+    dijkstra(x);
 
     // 거리가 k인 노드 출력
     print();
