@@ -65,6 +65,7 @@
 		"clocale": "cpp",
 		"variant": "cpp",
 		"__memory": "cpp",
-		"deque": "cpp"
+		"deque": "cpp",
+		"queue": "cpp"
 	}
 }
