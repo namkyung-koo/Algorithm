@@ -15,7 +15,7 @@ std::vector<std::pair<int, int>> graph[300001];
 // 최단 거리 테이블 만들기
 int distance[300001];
 
-void dijstra(int start)
+void dijkstra(int start)
 {
     std::priority_queue<std::pair<int, int>> pq;
     // 시작 노드로 가기 위한 최단 경로는 0으로 설정하여, 큐에 삽입
