@@ -1,3 +1,5 @@
+// 1051 - 숫자 정사각형
+
 import java.util.Scanner;
 
 public class Main_1051 {
